@@ -35,6 +35,7 @@ scrapy crawl buscape_crawler -a search='brastemp ative'
 ```
 
 **Saída**
+
 As revisões encontradas seram sempre escritas em arquivos *.txt* individuais no diretório *reviewsFiles*. Note que os arquivos não são apagados a cada execução, apenas sobrescritos e, portanto, podem sobrar arquivos antigos da execução anterior.
 
 É possível ainda obter os resultados em arquivos *.csv*, *.json* ou qualquer outro formato suportado pelo *Scrapy* bastando apenas adicionar a tag correspondente na execução. Diferentemente dos arquivos *.txt*, essa saída mostrará mais dados, como a data da revisão, uma avaliação de 1 a 5 estrelas e se o usuário recomenda ou não o produto.
