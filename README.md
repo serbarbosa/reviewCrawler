@@ -12,7 +12,7 @@ O objetivo é usar o link do primeiro resultado para acessar também as outras l
 ---
 
 
-##Execução
+**Execução**
 
 É necessário ter o framework *Scrapy* para executar o crawler. Convenientemente o diretorio desse README ja possui um ambiente virtual com o *Scrapy*.
 Para ativá-lo basta usar o comando:
@@ -34,7 +34,7 @@ Exemplo usando direto o *Scrapy* (não vai gerar csv. Abrir arquivo Makefile par
 scrapy crawl buscape_crawler -a search='brastemp ative'
 ```
 
-##Saída
+**Saída**
 As revisões encontradas seram sempre escritas em arquivos *.txt* individuais no diretório *reviewsFiles*. Note que os arquivos não são apagados a cada execução, apenas sobrescritos e, portanto, podem sobrar arquivos antigos da execução anterior.
 
 É possível ainda obter os resultados em arquivos *.csv*, *.json* ou qualquer outro formato suportado pelo *Scrapy* bastando apenas adicionar a tag correspondente na execução. Diferentemente dos arquivos *.txt*, essa saída mostrará mais dados, como a data da revisão, uma avaliação de 1 a 5 estrelas e se o usuário recomenda ou não o produto.
