@@ -9,6 +9,7 @@ class BuscapeReviewSpider(scrapy.Spider):
         #comeca acessando url correspondente a busca solicitada
         self.start_urls = [buscape_url + '/search/' + search.replace(' ', '-') + 
                     '?fromSearchBox=true&produto=' + search.replace(' ', '+')+'/']
+        self.review_counter = 1
 
     def parse(self, response):
         #recupera o href para o primeiro produto da busca
@@ -40,6 +41,10 @@ class BuscapeReviewSpider(scrapy.Spider):
             recommended = reviews[i].xpath('./div//div//span//span/text()').getall()[1]
             title = reviews[i].xpath('./div//div//span[has-class("body--big consumer-description__title")]/text()').get()
             review_body = reviews[i].css('p.consumer-description__txt::text').get()
+            
+            with open('reviewsFiles/' + str(self.review_counter) + '.txt', 'w') as rev:
+                rev.write(review_body + '\n')
+                self.review_counter += 1
 
             yield{
                 'data' : date,
@@ -71,7 +76,11 @@ class BuscapeReviewSpider(scrapy.Spider):
             recommended = reviews[i].css('div span.review-meta__recommend::text').get()
             title = reviews[i].css('div h4 a::text').get()
             review_body = '\n'.join(reviews[i].css('div p::text').getall())       
-               
+            
+            with open('reviewsFiles/' + str(self.review_counter) + '.txt', 'w') as rev:
+                rev.write(review_body + '\n')
+                self.review_counter += 1
+
             yield{
                 'data' : date,
                 'estrelas' : stars,
