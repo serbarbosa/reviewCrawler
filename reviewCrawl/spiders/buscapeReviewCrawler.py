@@ -1,10 +1,14 @@
 import scrapy
+import sys
+sys.path.insert(1,'../utils')
+import utils
+
 
 class BuscapeReviewSpider(scrapy.Spider):
     
     name = 'buscape_crawler'
     
-    def __init__(self, search='brastemp ative'):
+    def __init__(self, search):
         buscape_url = 'https://www.buscape.com.br'
         #comeca acessando url correspondente a busca solicitada
         self.start_urls = [buscape_url + '/search/' + search.replace(' ', '-') + 
@@ -43,6 +47,7 @@ class BuscapeReviewSpider(scrapy.Spider):
             review_body = reviews[i].css('p.consumer-description__txt::text').get()
             
             with open('reviewsFiles/' + str(self.review_counter) + '.txt', 'w') as rev:
+                #review_body_ascii = utils.find_equivalent_char(review_body)  ---sera tratado depois qndo necessario
                 rev.write(review_body + '\n')
                 self.review_counter += 1
 
@@ -78,6 +83,7 @@ class BuscapeReviewSpider(scrapy.Spider):
             review_body = '\n'.join(reviews[i].css('div p::text').getall())       
             
             with open('reviewsFiles/' + str(self.review_counter) + '.txt', 'w') as rev:
+                #review_body_ascii = utils.find_equivalent_char(review_body) --- sera tratado depois se necessario 
                 rev.write(review_body + '\n')
                 self.review_counter += 1
 

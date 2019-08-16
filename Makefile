@@ -1,5 +1,5 @@
 headlessCsv:
-	scrapy crawl buscape_crawler -s HTTPCASH_ENABLED=1 -o reviews.csv -t headless -a search='$(search)'
+	scrapy crawl buscape_crawler -s HTTPCASH_ENABLED=1 -o reviews.csv -a search='$(search)' -t headless
 csv:
 	scrapy crawl buscape_crawler -s HTTPCASH_ENABLED=1 -o reviews.csv -a search='$(search)' --nolog
 run:

@@ -1,0 +1,5 @@
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en
+User-Agent: Scrapy/1.6.0 (+https://scrapy.org)
+Accept-Encoding: gzip,deflate
+Cookie: gcofr=true; version=search; obn=0; neids=0; session=%7B%22site_origem%22%3A9402546%2C%22uso%22%3A9402546%2C%22dataso%22%3A%222019-08-16T07%3A28%3A39%22%2C%22duvcso%22%3A%222019-08-16T07%3A28%3A39%22%2C%22valid%22%3A%22e3c2e7a57d66a295363c8be5e08f4cfd%22%2C%22urlin%22%3A%22%2Fsearch%2F%3FfromSearchBox%3Dtrue%26produto%3D%22%7D; BP-UID=20018522712620190816042839; AKA_A2=A
