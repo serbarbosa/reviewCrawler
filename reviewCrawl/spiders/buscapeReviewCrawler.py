@@ -25,7 +25,7 @@ class BuscapeReviewSpider(scrapy.Spider):
         #comeca acessando url correspondente a busca solicitada
         self.start_urls = [buscape_url + '/search/' + search.replace(' ', '-') + 
                     '?fromSearchBox=true&produto=' + search.replace(' ', '+')+'/']
-        self.review_counter = 1
+        self.review_counter = 0
         self.review_amnt = 0
         self.per_page = 10       #numero de revisoes mostradas por pagina do buscape
         self.first_page = 5
@@ -64,11 +64,11 @@ class BuscapeReviewSpider(scrapy.Spider):
                 review_body = reviews[i].css('p.consumer-description__txt::text').get()
                 
                 with open('reviewsFiles/' + str(self.review_counter) + '.txt', 'w') as rev:
-                    #review_body_ascii = utils.find_equivalent_char(review_body)  ---sera tratado depois qndo necessario
                     rev.write(review_body + '\n')
                     self.review_counter += 1
 
                 yield{
+                    'id' : self.review_counter-1,
                     'data' : date,
                     'estrelas' : stars,
                     'foi_recomendado' : recommended + ' este produto', #para padronizar a saida
@@ -116,6 +116,7 @@ class BuscapeReviewSpider(scrapy.Spider):
                     self.review_counter += 1
 
                 yield{
+                    'id' : self.review_counter-1,
                     'data' : date,
                     'estrelas' : stars,
                     'foi_recomendado' : recommended,
@@ -153,6 +154,7 @@ class BuscapeReviewSpider(scrapy.Spider):
                 self.review_counter += 1
 
             yield{
+                'id' : self.review_counter-1,
                 'data' : date,
                 'estrelas' : stars,
                 'foi_recomendado' : recommended + ' este produto', #para padronizar a saida
@@ -208,6 +210,7 @@ class BuscapeReviewSpider(scrapy.Spider):
                     self.review_counter += 1
 
                 yield{
+                    'id' : self.review_counter-1,
                     'data' : date,
                     'estrelas' : stars,
                     'foi_recomendado' : recommended,
