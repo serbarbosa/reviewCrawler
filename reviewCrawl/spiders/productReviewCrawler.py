@@ -4,7 +4,7 @@ import math
 
 class BuscapeReviewSpider(scrapy.Spider):
 
-    name = 'buscape_crawler'
+    name = 'review_crawler'
 
     def __init__(self, search):
         buscape_url = 'https://www.amazon.com.br'
@@ -14,7 +14,7 @@ class BuscapeReviewSpider(scrapy.Spider):
         self.review_amnt = 0
         self.per_page = 10       #numero de revisoes mostradas por pagina na amazon
         self.search = search
-        self.count = 0
+        self.maxReviews = 2000
 
     def parse(self, response):
         # Recupera o href para o primeiro resultado da busca.
@@ -39,8 +39,8 @@ class BuscapeReviewSpider(scrapy.Spider):
     def parse_reviews_pages(self, response):
         #verifica a quantidade de revisoes em portugues e solicita em loop a extração das revisoes ate um limite de 5000
         self.review_amnt = int(response.css("#filter-info-section span::text").get().split()[-2].replace('.', ''))
-        if self.review_amnt > 5000:
-            self.review_amnt = 5000
+        if self.review_amnt > self.maxReviews:
+            self.review_amnt = self.maxReviews
         page_amnt = math.ceil(self.review_amnt/self.per_page)
 
         for i in range(1, page_amnt+1):

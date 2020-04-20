@@ -31,7 +31,7 @@ def run_crawler(product):
         pass
     os.makedirs('reviewsFiles')
 
-    process.crawl('buscape_crawler', search=product)
+    process.crawl('review_crawler', search=product)
     process.start()
     #os.system('scrapy crawl %s %s %s %s %s %s %s' % ('buscape_crawler', '-s', 'HTTPCASH_ENABLED=1', '-o', 'reviews.csv', '-a', 'search="'+search+'"'))
 
