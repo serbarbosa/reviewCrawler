@@ -28,6 +28,13 @@ class BuscapeReviewSpider(scrapy.Spider):
 
     def parse_product_page(self, response):
         # Verifica se ha revisoes em portugues e acessa pagina de revisoes
+        
+        #recupera e imprime nome do produto acessado
+        product_name = response.css("#productTitle::text").get().strip()
+        if len(product_name) > 50:
+            print(product_name[:50] + "(...)")
+        else:
+            print(product_name)
 
         reviews_page = response.css("#reviews-medley-footer a::attr(href)").get()
         yield scrapy.Request(
@@ -45,7 +52,7 @@ class BuscapeReviewSpider(scrapy.Spider):
 
         for i in range(1, page_amnt+1):
             yield scrapy.Request(
-                response.url + "&pageNumber="+str(i),
+                response.url + "/ref=cm_cr_arp_d_paging_btm_next_"+str(i)+"?pageNumber="+str(i),
                 callback=self.parse_reviews
             )
 
