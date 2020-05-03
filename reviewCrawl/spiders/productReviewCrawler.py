@@ -76,9 +76,9 @@ class BuscapeReviewSpider(scrapy.Spider):
             except:
                 helpful = "0"
 
-            with open('reviewsFiles/' + str(self.review_counter) + '.txt', 'w') as rev:
-                rev.write(review_body + '\n')
-                self.review_counter += 1
+            #with open('reviewsFiles/' + str(self.review_counter) + '.txt', 'w') as rev:
+            #    rev.write(review_body + '\n')
+            #    self.review_counter += 1
 
             yield{
                 'id' : self.review_counter-1,
