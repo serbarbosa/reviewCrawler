@@ -49,10 +49,11 @@ class BuscapeReviewSpider(scrapy.Spider):
         if self.review_amnt > self.maxReviews:
             self.review_amnt = self.maxReviews
         page_amnt = math.ceil(self.review_amnt/self.per_page)
+        url = response.url.split("?")[0]
 
         for i in range(1, page_amnt+1):
-            yield scrapy.Request(
-                response.url + "/ref=cm_cr_arp_d_paging_btm_next_"+str(i)+"?pageNumber="+str(i),
+            yield scrapy.Request(                                             # adicao-> ie=UTF8&reviewerType=all_reviews&           
+                url + "/ref=cm_cr_arp_d_paging_btm_next_"+str(i)+"?ie=UTF8&reviewerType=all_reviews&pageNumber="+str(i),
                 callback=self.parse_reviews
             )
 
@@ -60,7 +61,6 @@ class BuscapeReviewSpider(scrapy.Spider):
 
         #selecionando containers com revisoes
         reviews = response.css(".review")
-
         #para cada container de revisao, extrair e exportar dados desejados
         for i in range(len(reviews)):
 
